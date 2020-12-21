@@ -53,8 +53,10 @@
                                 name="password_confirmation" required />
             </div>
 
-            <div class="flex items-center justify-between mt-4">
-                <a href="/login">or Login</a>
+            <div class="flex items-center justify-between mt-4">        
+                <button class="border border-green-700 px-4 py-2 rounded">
+                    <a href="/login">Go to Login</a>
+                </button>
                 <x-button>
                     {{ __('Register') }}
                 </x-button>
