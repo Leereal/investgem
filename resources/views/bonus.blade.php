@@ -16,7 +16,7 @@
                   <th>AMOUNT</th>
                   <th>INVESTMENT</th>
                   <th>DOWNLINER</th>
-                  <th>STATUS</th>          
+                  {{-- <th>STATUS</th>           --}}
                 </thead>
                 <tbody>  
                   @foreach($bonuses as $bonus) 
@@ -25,7 +25,7 @@
                     <td>{{$bonus->amount}}</td>
                     <td>${{$bonus->investment->amount}}</td>
                     <td>{{$bonus->investment->user->username}}</td>
-                    <td>{{$bonus->status}}</td>             
+                    {{-- <td>{{$bonus->status}}</td>              --}}
                   </tr>
                   @endforeach  
                 </tbody>

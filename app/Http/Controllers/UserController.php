@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function index(){
+        $members = User::all();
+        return view('members',['members'=>$members]);
+    }
     public function referrals()
     {
          $user = Auth::user()->id;

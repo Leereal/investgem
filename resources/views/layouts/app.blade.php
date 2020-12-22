@@ -118,6 +118,33 @@
                                 <span class="sidebar-normal"> Profile </span>
                             </a>
                         </li>
+                        @if(Auth::user()->id==1)
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/deposits">
+                                <i class="material-icons">account_circle</i>
+                                <span class="sidebar-normal"> Deposits </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/members">
+                                <i class="material-icons">users</i>
+                                <span class="sidebar-normal"> Members </span>
+                            </a>
+                        </li>
+                        @endif
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                        <li class="nav-item ">
+                            <a 
+                                class="nav-link" 
+                                href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                this.closest('form').submit();" 
+                            >
+                                <i class="material-icons text-danger">lock</i>
+                                <span class="sidebar-normal text-danger"> Logout </span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

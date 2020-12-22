@@ -54,8 +54,9 @@ Route::group(['middleware' => 'auth'], function() {
 ]);
 });
 
-Route::post('/make-payment', [BidsController::class, 'make_payment'])->middleware(['auth']);
+Route::get('/deposits', [BidsController::class, 'all'])->middleware(['auth']);
 Route::post('/approve', [BidsController::class, 'approve'])->middleware(['auth']);
 Route::get('/investment', [InvestmentController::class, 'create'])->middleware(['auth']);
+Route::get('/members', [UserController::class, 'index'])->middleware(['auth']);
 
 

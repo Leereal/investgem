@@ -20,14 +20,15 @@ class BidsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function all()
     {
         //Get Bids
-        $bids = Auth::user()->bids()->where('status','=',2)->get();
+        $deposits = Bids::all();
 
-        return view('bids',['bids'=>$bids]);
+        return view('deposits',['deposits'=>$deposits]);
     }
 
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -116,7 +117,7 @@ class BidsController extends Controller
                     //Add bonus
                     $referral_bonus                      = new Bonus();
                     $referral_bonus->user_id             = $receiver->referrer->id;
-                    $referral_bonus->amount              = $bid->amount * 0.1;
+                    $referral_bonus->amount              = $bid->amount * 0.08;
                     $investment->bonus()->save($referral_bonus);
                 }
                 $approve_payment= Bids::findOrFail($request->bid)->update(['status' => 0]);
@@ -146,7 +147,7 @@ class BidsController extends Controller
                     //Add bonus
                     $referral_bonus                      = new Bonus();
                     $referral_bonus->user_id             = $receiver->referrer->id;
-                    $referral_bonus->amount              = $bid->amount * 0.1;
+                    $referral_bonus->amount              = $bid->amount * 0.08;
                     $investment->bonus()->save($referral_bonus);
                 }
                 Bids::findOrFail($request->bid)->update(['status' => 0]);

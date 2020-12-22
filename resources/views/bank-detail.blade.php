@@ -30,9 +30,9 @@
               <thead>
                 <tr>          
                   {{-- <th>AVATAR</th> --}}
-                  <th>BANK NAME</th>
+                  <th>PAYMENT METHOD</th>
                   <th>ACCOUNT NUMBER</th>
-                  <th>BRANCH</th>
+                  <th>BANK & BRANCH</th>
                   <th>ACCOUNT OWNER NAME</th> 
                   <th>ACCOUNT TYPE</th>                  
                   <th class="text-right">ACTIONS</th>
@@ -51,7 +51,7 @@
                     <form method="POST" action="/bank-details/{{$bank_detail->id}}">
                       {{ csrf_field() }}
                       {{ method_field('DELETE') }}
-                      <button type="submit" rel="tooltip" class="btn btn-danger">
+                      <button type="submit" onclick="confirm('Are you sure you received?')" rel="tooltip" class="btn btn-danger">
                         <i class="material-icons">close</i>
                       </button>
                     </form>
@@ -94,7 +94,7 @@
             <input type="text" class="form-control" name="account_holder" placeholder="ACCOUNT OWNER NAME" id="account_holder">
           </div> 
           <div class="form-group">
-            <input type="text" class="form-control" name="branch" placeholder="BRANCH" id="account_holder">
+            <input type="text" class="form-control" name="branch" placeholder="BANK & BRANCH" id="account_holder">
           </div>
           <div class="form-group">
             <select class="selectpicker" data-size="7" name="account_type" data-style="btn btn-primary  btn-round">
