@@ -14,6 +14,7 @@
                 <thead class="">
                   <th>DATE</th>
                   <th>AMOUNT</th>
+                  <th>PROFIT WITHDRAWABLE</th>
                   <th>PLAN</th>
                   <th>MATURITY DATE</th>
                   <th>BANK</th>
@@ -24,6 +25,7 @@
                   <tr>
                     <td>{{$investment->created_at}}</td> 
                     <td>${{$investment->amount}}</td>
+                    <td>${{$investment->profit}}</td>
                     <td>{{$investment->plan->name}}</td>
                     <td>{{$investment->due_date}}</td>
                     <td>{{$investment->bank->name}}</td>

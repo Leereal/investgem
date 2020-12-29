@@ -16,7 +16,7 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
-                    Bids
+                    Deposits
                   </a>
                 </li>
                 <li class="nav-item">
@@ -53,9 +53,9 @@
                         <thead class="">
                           <th>DATE</th>
                           <th>AMOUNT</th>
-                          <th>BANK</th>
+                          <th>PAYMENT METHOD</th>
                           <th>PLAN</th>
-                          {{-- <th>STATUS</th> --}}
+                          <th>STATUS</th>
                         </thead>
                         <tbody>                          
                           @foreach($bids as $bid) 
@@ -64,7 +64,13 @@
                             <td>${{$bid->amount}}</td>
                             <td>{{$bid->bank->name}}</td>
                             <td>{{$bid->plan->name}}</td>
-                            {{-- <td>{{$bid->status}}</td>              --}}
+                            <td>
+                              @if($bid->status == 101)
+                                <span class="badge badge-primary">Waiting Approval</span>
+                              @else
+                                <span class="badge badge-success">Approved</span>
+                              @endif
+                            </td>         
                           </tr>
                           @endforeach  
                         </tbody>
