@@ -33,4 +33,11 @@ class Investment extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    //Withdrawals Relationship
+    public function withdrawals()
+    {
+        return $this->hasMany('App\Models\Withdrawal');
+    }
+
 }

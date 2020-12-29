@@ -100,6 +100,7 @@ class BidsController extends Controller
         $amount = $bid->amount;
         $expected_profit = $amount + ($plan->interest / 100 * $amount);
         $balance = $expected_profit;
+        $profit = $expected_profit-$amount;
 
         //Take investment done today by pending order user(buyer)  and with the same package to join with the current one if any
         $investment  = Investment::where('user_id', $bid->user_id)->whereDate('created_at', Carbon::today())->where('plan_id', $bid->plan_id)->where('status', 101)->first();
@@ -109,6 +110,7 @@ class BidsController extends Controller
                 DB::beginTransaction();
 
                 $investment->expected_profit += $expected_profit;
+                $investment->profit += $profit;
                 $investment->amount += $amount;
                 $investment->balance += $balance;
                 $investment->save();
@@ -140,6 +142,7 @@ class BidsController extends Controller
                 $investment->bank_id                 = $bid->bank_id;         
                 $investment->ipaddress               = request()->ip();
                 $investment->expected_profit         = $expected_profit;
+                $investment->profit                  = $profit;
                 $investment->balance                 = $balance;
                 $investment->save();
 

@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WithdrawalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,8 @@ Route::get('/profile', function () {
     return view('profile');
 })->middleware(['auth'])->name('profile');
 
+Route::get('/withdraw/{id?}', [WithdrawalController::class, 'show'])->middleware(['auth']);
+
 Route::get('/history', [HistoryController::class, 'index'])->middleware(['auth'])->name('history');
 Route::get('/referrals', [UserController::class, 'referrals'])->middleware(['auth'])->name('referrals');
 Route::post('/changepassword', [UserController::class, 'change_password'])->middleware(['auth']);
@@ -51,6 +54,7 @@ Route::group(['middleware' => 'auth'], function() {
     'investments'   => InvestmentController::class,
     'bids'          => BidsController::class,
     'bonus'         => BonusController::class,  
+    'withdraw'      => WithdrawalController::class,  
 ]);
 });
 

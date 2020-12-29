@@ -27,6 +27,13 @@
                     <td>{{$investment->plan->name}}</td>
                     <td>{{$investment->due_date}}</td>
                     <td>{{$investment->bank->name}}</td>
+                    <td>
+                      @if($investment->status == 1)
+                          <a href="withdraw/{{$investment->id}}"><button type="button" class="btn btn-success btn-sm btn-round"><i class="material-icons">add_task</i> Withdraw Now</button></a>                      
+                      @else
+                          <button disabled class="btn btn-primary btn-sm btn-round"><i class="material-icons">schedule</i> Approved</button>
+                      @endif 
+                    </td>
                     {{-- <td>{{$investment->status}}</td>               --}}
                   </tr>
                   @endforeach   

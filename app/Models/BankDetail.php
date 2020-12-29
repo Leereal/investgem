@@ -26,4 +26,10 @@ class BankDetail extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    //Withdrawal Relationship
+    public function withdrawals()
+    {
+        return $this->hasMany('App\Models\Withdrawal');
+    }
 }

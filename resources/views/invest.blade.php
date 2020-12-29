@@ -125,13 +125,17 @@
                         <div class="form-group">    
                             <input type="text" class="form-control" name="amount" placeholder="Amount" id="amount">
                         </div>
-                        <div class="dropdown bootstrap-select show"><select class="selectpicker" name="payment_method" data-size="7" data-style="btn btn-primary btn-round" title="Single Select" tabindex="-98">
+                        <div class="dropdown bootstrap-select show">
+                          <select class="selectpicker" name="payment_method" data-size="7" data-style="btn btn-primary btn-round" title="Single Select" tabindex="-98">
                             <option disabled="" selected="">PAYMENT METHOD</option>
                             @foreach($banks as $bank)
                             <option value="{{$bank->id}}">{{$bank->name}}</option>
                             @endforeach   
-                           </select>                          
-                        <button type="submit" class="btn btn-rose btn-round">INVEST</button>
+                          </select> 
+                        </div>
+                        <div>
+                          <button type="submit" class="btn btn-rose btn-round">INVEST</button>
+                        </div>
                     </form>
                 </div>
                 <div class="card-footer">
