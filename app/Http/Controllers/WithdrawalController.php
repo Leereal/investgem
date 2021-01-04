@@ -85,14 +85,14 @@ class WithdrawalController extends Controller
                 DB::beginTransaction();
                 $withdrawal                          = new Withdrawal;
                 $withdrawal->amount                  = $request->input('amount');             
-                $withdrawal->payment_detail_id       = $request->input('payment_method');
+                $withdrawal->bank_detail_id       = $request->input('payment_method');
                 $withdrawal->investment_id           = $request->input('investment');
                 $withdrawal->user_id                 = Auth::user()->id;   
                 $withdrawal->ipAddress               = request()->ip();  
                 $withdrawal->save();
                   
                 //Reduce Investment
-                $investment                            = Investment::findOrFail($request->input('investment_id'));
+                $investment                            = Investment::findOrFail($request->input('investment'));
                 $investment->balance                   = $investment_balance;
                 $investment->profit                    = $profit_balance;
                 $investment->status                    = $status;
