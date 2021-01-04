@@ -122,8 +122,14 @@
                             </div>                            
                         </div>
                         @endforeach
-                        <div class="form-group">    
-                            <input type="text" class="form-control" name="amount" placeholder="Amount" id="amount">
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="Amount (in dollar value)" aria-label="Amount (to the nearest dollar)">
+                          <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                          </div>
                         </div>
                         <div class="dropdown bootstrap-select show">
                           <select class="selectpicker" name="payment_method" data-size="7" data-style="btn btn-primary btn-round" title="Single Select" tabindex="-98">
