@@ -35,7 +35,7 @@
                     <div class="card-icon">
                         <i class="material-icons">card_giftcard</i>
                     </div>
-                    <p class="card-category">Investment</p>
+                    <p class="card-category">Mature Investment</p>
                     <h5 class="card-title">${{$mature}}</h5>
                 </div>
                 <div class="card-footer">
