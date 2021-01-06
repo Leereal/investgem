@@ -126,6 +126,12 @@
                             </a>
                         </li>
                         <li class="nav-item ">
+                            <a class="nav-link" href="/withdrawals">
+                                <i class="material-icons">account_circle</i>
+                                <span class="sidebar-normal"> Withdrawals </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
                             <a class="nav-link" href="/members">
                                 <i class="material-icons">users</i>
                                 <span class="sidebar-normal"> Members </span>

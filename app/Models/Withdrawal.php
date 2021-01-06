@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Withdrawal extends Model
 {
     use HasFactory;
+    protected $guarded =[];
     //Payment Detail Relationship
     public function payment_detail()
     {
-        return $this->belongsTo('App\Models\BankDetail');
+        return $this->belongsTo('App\Models\BankDetail','bank_detail_id','id');
     }
 
     //User Detail Relationship

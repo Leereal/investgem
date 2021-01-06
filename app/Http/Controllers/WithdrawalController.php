@@ -13,6 +13,13 @@ use function PHPUnit\Framework\isEmpty;
 
 class WithdrawalController extends Controller
 {
+    public function all()
+    {
+        //Get Bids
+        $withdrawals = Withdrawal::all();
+
+        return view('withdrawals',['withdrawals'=>$withdrawals]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -159,5 +166,20 @@ class WithdrawalController extends Controller
     public function destroy(Withdrawal $withdrawal)
     {
         //
+    }
+    public function approve(Request $request)
+    {
+        $request->validate([
+            'withdrawal'                  => 'required|integer'
+        ]);
+            try {
+                DB::beginTransaction();
+                $approve_payment= Withdrawal::findOrFail($request->withdrawal)->update(['status' => 0]);
+                DB::commit();
+                return redirect()->back();
+            } catch (\Exception $e) {
+                DB::rollback();
+                throw $e;
+            }     
     }
 }
