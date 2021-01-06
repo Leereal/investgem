@@ -20,6 +20,7 @@
                   <th>ACOOUNT HOLDER</th>
                   <th>ACCOUNT NUMBER</th>
                   <th>INV DATE</th>
+                  <th>INVESTMENT</th>
                   <th>ACTION</th>
                   {{-- <th>STATUS</th> --}}
                 </thead>
@@ -37,6 +38,7 @@
                             <td>{{$withdrawal->payment_detail->account_holder}}</td>
                             <td>{{$withdrawal->payment_detail->account_number}}</td>
                             <td>{{$withdrawal->investment->created_at}}</td>
+                            <td>{{$withdrawal->investment->amount}}</td>
                             <td>
                                 @if($withdrawal->status == 2)
                                     <button type="submit" class="btn btn-success btn-sm btn-round" onclick="confirm('Are you sure you received?')"><i class="material-icons">add_task</i> Received</button>
