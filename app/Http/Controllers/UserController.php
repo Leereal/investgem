@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index(){
-        $members = User::all()->orderByDesc('id');
+        $members = User::orderByDesc('id')->get();
         return view('members',['members'=>$members]);
     }
     public function referrals()
