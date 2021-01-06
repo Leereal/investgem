@@ -10,7 +10,7 @@
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table">
+            <table class="table text-nowrap">
                 <thead class="">
                   <th>DATE JOINED</th>
                   <th>USERNAME</th>

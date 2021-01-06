@@ -27,7 +27,7 @@
               </ul>
               <div class="tab-content tab-space">
                 <div class="tab-pane active" id="link1">
-                    <table class="table">
+                    <table class="table text-nowrap">
                         <thead class="">
                           <th>DATE</th>
                           <th>AMOUNT</th>
@@ -49,7 +49,7 @@
                       </table>
                 </div>
                 <div class="tab-pane" id="link2">
-                    <table class="table">
+                    <table class="table text-nowrap">
                         <thead class="">
                           <th>DATE</th>
                           <th>AMOUNT</th>
@@ -77,7 +77,7 @@
                       </table>
                 </div>
                 <div class="tab-pane" id="link3">
-                    <table class="table">
+                    <table class="table text-nowrap">
                         <thead class="">
                           <th>DATE</th>
                           <th>AMOUNT</th>
