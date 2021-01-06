@@ -17,6 +17,7 @@
                   <th>AMOUNT</th>
                   <th>PLAN</th>                  
                   <th>BANK</th>
+                  <th>BRANCH</th>
                   <th>ACOOUNT HOLDER</th>
                   <th>ACCOUNT NUMBER</th>
                   <th>INV DATE</th>
@@ -33,8 +34,9 @@
                             <td>{{$withdrawal->created_at}}</td> 
                             <td>{{$withdrawal->user->username}}</td>
                             <td>${{$withdrawal->amount}}</td>
-                            <td>{{$withdrawal->investment->plan->name}}</td>                    
-                           <td>{{$withdrawal->payment_detail->bank->name ?? ''}}</td>
+                            <td>{{$withdrawal->investment->plan->name}}</td>  
+                            <td>{{$withdrawal->payment_detail->bank->name ?? ''}}</td>                  
+                           <td>{{$withdrawal->payment_detail->branch ?? ''}}</td>
                             <td>{{$withdrawal->payment_detail->account_holder ?? ''}}</td>
                             <td>{{$withdrawal->payment_detail->account_number ?? ''}}</td>
                             <td>{{$withdrawal->investment->created_at}}</td>
