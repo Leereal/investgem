@@ -12,6 +12,7 @@
           <div class="table-responsive">
             <table class="table text-nowrap">
                 <thead class="">
+                  <th>ID</th>
                   <th>DATE JOINED</th>
                   <th>USERNAME</th>                  
                   <th>CELLPHONE</th>
@@ -21,6 +22,7 @@
                 <tbody> 
                   @foreach($members as $member)                  
                         <tr>
+                          <td>{{$member->id}}</td> 
                             <td>{{$member->created_at}}</td> 
                             <td>{{$member->username}}</td>
                             <td>${{$member->cellphone}}</td>
