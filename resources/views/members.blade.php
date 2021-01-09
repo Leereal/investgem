@@ -25,7 +25,7 @@
                           <td>{{$member->id}}</td> 
                             <td>{{$member->created_at}}</td> 
                             <td>{{$member->username}}</td>
-                            <td>${{$member->cellphone}}</td>
+                            <td>{{$member->cellphone}}</td>
                             <td>{{$member->referrer->username}}</td> 
                         </tr> 
                   @endforeach   
