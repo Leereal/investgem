@@ -60,6 +60,8 @@ Route::group(['middleware' => 'auth'], function() {
 
 Route::get('/deposits', [BidsController::class, 'all'])->middleware(['auth']);
 Route::get('/withdrawals', [WithdrawalController::class, 'all'])->middleware(['auth']);
+Route::get('/all-investments', [InvestmentController::class, 'all'])->middleware(['auth']);
+Route::post('/reinvest', [InvestmentController::class, 'mature_or_reinvest'])->middleware(['auth']);
 Route::post('/approve', [BidsController::class, 'approve'])->middleware(['auth']);
 Route::post('/approve-withdrawal', [WithdrawalController::class, 'approve'])->middleware(['auth']);
 Route::get('/investment', [InvestmentController::class, 'create'])->middleware(['auth']);

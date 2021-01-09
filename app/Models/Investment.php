@@ -10,6 +10,8 @@ class Investment extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $guarded = [];
+
     //Plan Relationship
     public function plan()
     {

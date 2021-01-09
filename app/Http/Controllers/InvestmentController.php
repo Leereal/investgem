@@ -5,11 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Bank;
 use App\Models\Investment;
 use App\Models\Plan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class InvestmentController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function all()
+    {
+        //Get Bids
+        $investments = Investment::all();
+
+        return view('allinvestments',['investments'=>$investments]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -89,5 +104,76 @@ class InvestmentController extends Controller
     public function destroy(Investment $investment)
     {
         //
+    }
+
+    public function mature_or_reinvest(Request $request)
+    {
+        if (Auth::user()->id == 1) {
+                $request->validate([
+                'investment'                  => 'required|integer'
+            ]);
+            //Take investment
+            $investment = Investment::findOrFail($request->investment);
+
+            //Check if it is a reinvest else mature it              
+            if($investment->status == 1){
+                //Reinvest
+                $this->reinvest($investment->id);
+                return redirect('/all-investments');
+            }
+            if($investment->status == 101){                
+                //Mature
+                $this->mature($investment->id);
+                return redirect('/all-investments');
+                
+            }
+        } 
+        else{
+            dd('You are trying to hack this lol hahaha') ; 
+        } 
+    }
+
+    protected function mature($id)
+    {
+        if (Auth::user()->id == 1) {                
+                try {
+                    DB::beginTransaction();
+                    $mature= Investment::findOrFail($id)->update(['status' => 1]);
+                    DB::commit();         
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    throw $e;
+                }
+        }  
+    }
+    protected function reinvest($id)
+    {
+        if (Auth::user()->id == 1) {          
+                //Take the whole invest
+                $reinvestment = Investment::findOrFail($id);
+
+
+                //Create new table with new duedate and plan            
+                try {
+                    DB::beginTransaction();
+                        $investment                          = new Investment;
+                        $investment->amount                  = $reinvestment->amount;
+                        $investment->description             = 'Reinvest';
+                        $investment->plan_id                 = $reinvestment->plan_id;              
+                        $investment->user_id                 = $reinvestment->user_id;               
+                        $investment->due_date                = Carbon::parse($reinvestment->due_date)->addDays($reinvestment->plan->period);
+                        $investment->bank_id                 = $reinvestment->bank_id;         
+                        $investment->ipaddress               = request()->ip();
+                        $investment->expected_profit         = $reinvestment->expected_profit;
+                        $investment->profit                  = $reinvestment->expected_profit-$reinvestment->amount;
+                        $investment->balance                 = $reinvestment->expected_profit;
+                        $investment->save();
+                        Investment::findOrFail($reinvestment->id)->update(['status' => 0,'balance'=>0]);
+                    DB::commit();                    
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    throw $e;
+                }
+        }    
     }
 }
