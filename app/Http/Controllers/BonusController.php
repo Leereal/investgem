@@ -16,7 +16,7 @@ class BonusController extends Controller
         //$bonuses = Bonus::where('bonuses.status', '>', 0)->get()->sum('amount');
 
         //return view('allbonuses',['bonuses'=>$bonuses]);
-        $bonus = BonusResource::collection(Bonus::all());
+        $bonus = Bonus::all();
         return view('allbonuses',['bonuses'=>$bonus]);
         
       
