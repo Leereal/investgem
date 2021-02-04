@@ -10,6 +10,8 @@ class Bonus extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $guarded = [];
+
      /**
      * Get the investment for this bonus.
      */
