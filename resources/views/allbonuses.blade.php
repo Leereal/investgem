@@ -27,7 +27,7 @@
                     <input type="hidden" name="bonus" value="{{$bonus->id}}">
                         <tr>
                             <td>{{$bonus->created_at}}</td> 
-                            <td>{{$bonus->username}}</td>
+                            <td>{{$bonus->user->username}}</td>
                             <td>${{$bonus->amount}}</td>
                             <td>{{$bonus->investment->user->username}}</td>
                             <td>${{$bonus->investment->amount}}</td>                                                       
