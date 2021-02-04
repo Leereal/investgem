@@ -2,12 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BonusResource;
 use App\Models\Bonus;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BonusController extends Controller
 {
+    public function all()
+    {       
+        //Get Bids
+        //$bonuses = Bonus::where('bonuses.status', '>', 0)->get()->sum('amount');
+
+        //return view('allbonuses',['bonuses'=>$bonuses]);
+        $bonus = BonusResource::collection(User::with('bonuses')->get());
+        return view('allbonuses',['bonuses'=>$bonus]);
+        
+      
+    }
+
     /**
      * Display a listing of the resource.
      *

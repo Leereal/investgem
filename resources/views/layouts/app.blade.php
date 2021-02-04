@@ -120,6 +120,12 @@
                         </li>
                         @if(Auth::user()->id==1)
                         <li class="nav-item ">
+                            <a class="nav-link" href="/all-bonuses">
+                                <i class="material-icons">account_circle</i>
+                                <span class="sidebar-normal"> Bonuses </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
                             <a class="nav-link" href="/all-investments">
                                 <i class="material-icons">account_circle</i>
                                 <span class="sidebar-normal"> Investments </span>

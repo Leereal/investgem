@@ -20,7 +20,7 @@ class InvestmentController extends Controller
     public function all()
     {
         //Get Bids
-        $investments = Investment::all();
+        $investments = Investment::orderBy('status')->orderBy('due_date')->whereIn('status',[1,101])->get();
 
         return view('allinvestments',['investments'=>$investments]);
     }
