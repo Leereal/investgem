@@ -31,8 +31,12 @@
                             <td>${{$bonus->amount}}</td>
                             <td>{{$bonus->investment->user->username ?? ''}}</td>
                             <td>${{$bonus->investment->amount ?? ''}}</td>                                                       
-                            <td>                             
+                            <td>    
+                              @if($bonus->status == 1)                         
                                     <button type="submit" class="btn btn-success btn-sm btn-round" onclick="confirm('Are you sure you want to mature this?')"><i class="material-icons">add_task</i> PAY?</button>
+                                    @else
+                                    <button disabled class="btn btn-primary btn-sm btn-round"><i class="material-icons">schedule</i> Approved</button>
+                                @endif 
 
                             </td>
                             {{-- <td>{{$investment->status}}</td>               --}}
