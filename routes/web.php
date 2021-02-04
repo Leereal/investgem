@@ -67,5 +67,6 @@ Route::post('/approve-withdrawal', [WithdrawalController::class, 'approve'])->mi
 Route::get('/investment', [InvestmentController::class, 'create'])->middleware(['auth']);
 Route::get('/members', [UserController::class, 'index'])->middleware(['auth']);
 Route::get('/all-bonuses', [BonusController::class, 'all'])->middleware(['auth']);
+Route::post('/bonus-pay', [BonusController::class, 'pay'])->middleware(['auth']);
 
 

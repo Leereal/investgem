@@ -100,4 +100,11 @@ class BonusController extends Controller
     {
         //
     }
+    public function pay(Request $request)
+    {
+        if (Auth::user()->id == 1) { 
+                    $pay= Bonus::findOrFail($request->bonus)->update(['status' => 0]);
+                    return redirect('/all-bonuses');
+        }  
+    }
 }
