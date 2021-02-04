@@ -16,7 +16,7 @@ class BonusController extends Controller
         //$bonuses = Bonus::where('bonuses.status', '>', 0)->get()->sum('amount');
 
         //return view('allbonuses',['bonuses'=>$bonuses]);
-        $bonus = Bonus::orderBy('status','desc')->orderBy('user.username')->get();;
+        $bonus = Bonus::orderBy('status','desc')->groupBy('user_id')->get();;
         return view('allbonuses',['bonuses'=>$bonus]);
         
       
