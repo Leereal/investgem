@@ -14,10 +14,9 @@ class BonusResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'username' => $this->username,
-            'amount' => $this->bonuses->amount,
+        return [            
+            'username' => $this->user->username,
+            'amount' => $this->amount,
             'created_at' => $this->created_at,
             'referral' => $this->investment->user->username,
             'investment' => $this->investment->amount,

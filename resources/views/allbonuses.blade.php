@@ -29,7 +29,7 @@
                             <td>{{$bonus->created_at}}</td> 
                             <td>{{$bonus->username}}</td>
                             <td>${{$bonus->amount}}</td>
-                            <td>${{$bonus->referral}}</td>
+                            <td>{{$bonus->referral}}</td>
                             <td>${{$bonus->investment}}</td>                                                       
                             <td>                             
                                     <button type="submit" class="btn btn-success btn-sm btn-round" onclick="confirm('Are you sure you want to mature this?')"><i class="material-icons">add_task</i> PAY?</button>
