@@ -17,7 +17,8 @@ class BonusController extends Controller
 
         //return view('allbonuses',['bonuses'=>$bonuses]);
         $bonus = Bonus::orderBy('status','desc')->get()->groupBy('user_id');
-        return view('allbonuses',['bonuses'=>$bonus]);
+        dd ($bonus->toArray());
+        //return view('allbonuses',['bonuses'=>$bonus]);
         
       
     }
