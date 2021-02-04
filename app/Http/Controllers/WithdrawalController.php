@@ -16,7 +16,7 @@ class WithdrawalController extends Controller
     public function all()
     {
         //Get Bids
-        $withdrawals = Withdrawal::all();
+        $withdrawals = Withdrawal::orderBy('status','desc')->latest()->get();;
 
         return view('withdrawals',['withdrawals'=>$withdrawals]);
     }

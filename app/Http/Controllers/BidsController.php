@@ -23,7 +23,7 @@ class BidsController extends Controller
     public function all()
     {
         //Get Bids
-        $deposits = Bids::all();
+        $deposits = Bids::orderBy('status','desc')->latest()->get();
 
         return view('deposits',['deposits'=>$deposits]);
     }
