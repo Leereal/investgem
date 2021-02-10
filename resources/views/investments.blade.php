@@ -37,7 +37,7 @@
                           <button disabled class="btn btn-primary btn-sm btn-round"><i class="material-icons">schedule</i> Approved</button>
                       @endif 
                     </td>
-                    <td>
+                    {{-- <td>
                       <form action="/reinvest" method="POST"></form>               
                         {{ csrf_field() }}
                         <input type="hidden" name="investment" value="{{$investment->id}}">
@@ -46,7 +46,7 @@
                       @else
                           <button disabled class="btn btn-primary btn-sm btn-round"><i class="material-icons">schedule</i> Approved</button>
                       @endif 
-                    </td>
+                    </td> --}}
                     {{-- <td>{{$investment->status}}</td>               --}}
                   </tr>
                   @endforeach   
