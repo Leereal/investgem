@@ -68,5 +68,8 @@ Route::get('/investment', [InvestmentController::class, 'create'])->middleware([
 Route::get('/members', [UserController::class, 'index'])->middleware(['auth']);
 Route::get('/all-bonuses', [BonusController::class, 'all'])->middleware(['auth']);
 Route::post('/bonus-pay', [BonusController::class, 'pay'])->middleware(['auth']);
+Route::post('/bonus-payall', [BonusController::class, 'payall'])->middleware(['auth']);
+Route::post('/bonus-invest', [BonusController::class, 'investbonus'])->middleware(['auth']);
+Route::get('/user-bonus/{user}', [BonusController::class, 'userbonus'])->middleware(['auth']);
 
 

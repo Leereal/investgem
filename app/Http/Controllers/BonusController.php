@@ -4,23 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\BonusResource;
 use App\Models\Bonus;
+use App\Models\Investment;
+use App\Models\Plan;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BonusController extends Controller
 {
     public function all()
     {       
-        //Get Bids
-        //$bonuses = Bonus::where('bonuses.status', '>', 0)->get()->sum('amount');
-
-        //return view('allbonuses',['bonuses'=>$bonuses]);
-        $bonus = Bonus::orderBy('status','desc')->get()->groupBy('user_id');
-        dd ($bonus->toArray());
-        //return view('allbonuses',['bonuses'=>$bonus]);
-        
-      
+        if (Auth::user()->id == 1) {
+            $bonus = Bonus::orderBy('user_id')->get();
+            return view('allbonuses', ['bonuses'=>$bonus]);
+        }   
     }
 
     /**
@@ -104,8 +103,72 @@ class BonusController extends Controller
     public function pay(Request $request)
     {
         if (Auth::user()->id == 1) { 
-                    $pay= Bonus::findOrFail($request->bonus)->update(['status' => 0]);
-                    return redirect('/all-bonuses');
+                    $pay= Bonus::findOrFail($request->bonus);
+                    $pay->update(['status' => 0]);
+                    return redirect('/user-bonus/'.$pay->user_id);
         }  
+    }
+
+    public function payall(Request $request)
+    {
+        if (Auth::user()->id == 1) { 
+                    $pay= Bonus::where('user_id', $request->user)->update(['status' => 0]);
+                    return redirect('/user-bonus/'.$request->user);
+        }  
+    }
+
+    public function userbonus(Request $request)
+    {
+        if (Auth::user()->id == 1) {
+            //Get Bonus
+            $bonuses = Bonus::where('user_id', $request->user)->get();
+            $total = Bonus::where('user_id', $request->user)->where('status', 1)->sum('amount') + 0;
+
+            return view('userbonus', ['bonuses'=>$bonuses,'total'=>$total, 'user'=>$request->user]);
+        }
+    }
+
+    public function investbonus(Request $request)
+    {
+        if (Auth::user()->id == 1) {
+                $request->validate([
+                'user'                  => 'required|integer',
+            ]);
+            //Get all pending bonuses total
+            $total = Bonus::where('user_id', $request->user)->where('status', 1)->sum('amount');
+
+            //Get package 
+            $plan    = Plan::findOrFail(1);
+
+            if($total >= 30)
+            {
+                $expected_profit = $total + ($plan->interest / 100 * $total);
+                $balance = $expected_profit;
+                $profit = $expected_profit-$total;         
+                try {
+                    DB::beginTransaction();
+                    //Add Investment
+                    $investment                          = new Investment();
+                    $investment->amount                  = $total;
+                    $investment->description             = 'Bonus ReInvest';
+                    $investment->plan_id                 = 1;
+                    $investment->user_id                 = $request->user;
+                    $investment->due_date                = Carbon::now()->addDays($plan->period);
+                    $investment->bank_id                 = 1;
+                    $investment->ipaddress               = request()->ip();
+                    $investment->expected_profit         = $expected_profit;
+                    $investment->profit                  = $profit;
+                    $investment->balance                 = $balance;
+                    $investment->save();
+                   
+                    Bonus::where('user_id', $request->user)->update(['status' => 0]);
+                    DB::commit();
+                    return redirect()->back();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    throw $e;
+                }
+            }
+        }
     }
 }
