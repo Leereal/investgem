@@ -149,6 +149,12 @@
                                 <span class="sidebar-normal"> Members </span>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/settings">
+                                <i class="material-icons">settings</i>
+                                <span class="sidebar-normal"> Settings </span>
+                            </a>
+                        </li>
                         @endif
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

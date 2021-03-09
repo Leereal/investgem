@@ -71,5 +71,9 @@ Route::post('/bonus-pay', [BonusController::class, 'pay'])->middleware(['auth'])
 Route::post('/bonus-payall', [BonusController::class, 'payall'])->middleware(['auth']);
 Route::post('/bonus-invest', [BonusController::class, 'investbonus'])->middleware(['auth']);
 Route::get('/user-bonus/{user}', [BonusController::class, 'userbonus'])->middleware(['auth']);
-
-
+Route::post('/reinvest-user', [InvestmentController::class, 'user_reinvestment'])->middleware(['auth']);
+Route::post('/reinvest-all', [InvestmentController::class, 'bulk_reinvestment'])->middleware(['auth']);
+Route::post('/mature-all', [InvestmentController::class, 'bulk_mature'])->middleware(['auth']);
+Route::get('/settings', function () {
+    return view('settings');
+})->middleware(['auth'])->name('settings');

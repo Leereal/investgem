@@ -15,6 +15,7 @@
                   <th>DATE</th>
                   <th>AMOUNT</th>
                   <th>PROFIT WITHDRAWABLE</th>
+                  <th>BALANCE</th>
                   <th>PLAN</th>
                   <th>MATURITY DATE</th>
                   <th>BANK</th>
@@ -27,6 +28,7 @@
                     <td>{{$investment->created_at}}</td> 
                     <td>${{$investment->amount}}</td>
                     <td>${{$investment->profit}}</td>
+                    <td>${{$investment->balance}}</td>
                     <td>{{$investment->plan->name}}</td>
                     <td>{{$investment->due_date}}</td>
                     <td>{{$investment->bank->name}}</td>
@@ -37,17 +39,15 @@
                           <button disabled class="btn btn-primary btn-sm btn-round"><i class="material-icons">schedule</i> Approved</button>
                       @endif 
                     </td>
-                    {{-- <td>
-                      <form action="/reinvest" method="POST"></form>               
+                    <td>
+                      <form action="/reinvest-user" method="POST">             
                         {{ csrf_field() }}
                         <input type="hidden" name="investment" value="{{$investment->id}}">
                       @if($investment->status == 1)
-                          <a href="reinvest/{{$investment->id}}"><button type="button" class="btn btn-success btn-sm btn-round"><i class="material-icons">add_task</i> ReInvest Now</button></a>                      
-                      @else
-                          <button disabled class="btn btn-primary btn-sm btn-round"><i class="material-icons">schedule</i> Approved</button>
+                          <button type="submit" onclick="confirm('Do you want to reinvest? If NO please click back button')" class="btn btn-success btn-sm btn-round"><i class="material-icons">add_task</i> ReInvest Now</button>                   
                       @endif 
-                    </td> --}}
-                    {{-- <td>{{$investment->status}}</td>               --}}
+                      </form>  
+                    </td>                    
                   </tr>
                   @endforeach   
                 </tbody>
